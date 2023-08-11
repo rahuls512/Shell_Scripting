@@ -1,0 +1,27 @@
+###### Setup the SSH Agent Forwarding #################################
+
+# Open Git Bash or PowerShell
+
+# Navigate to the directory containing the private key
+$ pwd
+$ cd /c/Users/Rahul Sharan/Downloads/awskey01.pem
+
+# Start the SSH agent
+$ eval $(ssh-agent)
+Agent pid 825
+
+# Add the private key to the agent
+$ ssh-add awskey01.pem
+Identity added: awskey01.pem (awskey01.pem)
+
+# SSH into the Bastion Host using agent forwarding
+$ ssh -A ec2-user@Bastion-Host-publicIP
+Successfully logged in to the Bastion Host
+
+# Check the list of added RSA keys
+$ ssh-add -l
+
+# SSH into the Web Server using agent forwarding
+$ ssh Web-Server-privateIP
+$ ssh 10.0.0.1
+Successfully logged in to the Web Server
